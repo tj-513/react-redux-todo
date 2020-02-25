@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-const AddTodo = ({ onClickSaveButton, onClickCancelButton }) => {
+const AddTodo = ({
+  saveTodoButtonText,
+  onClickSaveButton,
+  onClickCancelButton
+}) => {
   const [todoDescription, setTodoDescription] = useState('');
   return (
     <div>
@@ -11,16 +15,18 @@ const AddTodo = ({ onClickSaveButton, onClickCancelButton }) => {
         onChange={e => setTodoDescription(e.currentTarget.value)}
       />
       <button
+        disabled={saveTodoButtonText === 'Saving...'}
         onClick={() => {
-          setTodoDescription('');
           onClickSaveButton({ value: todoDescription });
         }}
       >
-        Save
+        {saveTodoButtonText}
       </button>
       <button onClick={onClickCancelButton}>Cancel</button>
     </div>
   );
 };
+
+
 
 export default AddTodo;

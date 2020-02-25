@@ -7,6 +7,7 @@ import Todo from './Todo';
 const Home = ({
   todos,
   isAddTodoInputVisible,
+  saveTodoButtonText,
   onClickSaveButton,
   onClickAddTodoButton
 }) => (
@@ -15,6 +16,7 @@ const Home = ({
       <AddTodo
         onClickSaveButton={onClickSaveButton}
         onClickCancelButton={onClickAddTodoButton}
+        saveTodoButtonText={saveTodoButtonText}
       />
     ) : (
       <button onClick={onClickAddTodoButton}>Add New Todo</button>
@@ -23,7 +25,11 @@ const Home = ({
     <h3> Your Todos</h3>
     {todos &&
       todos.map(todo => (
-        <Todo key={todo.id} completed={todo.isComplete} description={todo.description} />
+        <Todo
+          key={todo.id}
+          completed={todo.isComplete}
+          description={todo.description}
+        />
       ))}
   </div>
 );
@@ -31,7 +37,8 @@ const Home = ({
 const mapStateToProps = state => {
   return {
     todos: state.get('todos'),
-    isAddTodoInputVisible: state.get('isAddTodoInputVisible')
+    isAddTodoInputVisible: state.get('isAddTodoInputVisible'),
+    saveTodoButtonText: state.get('saveTodoButtonText')
   };
 };
 
