@@ -7,7 +7,9 @@ const initialState = Map({
     { id: uuid(), description: 'View Todo', isComplete: true }
   ]),
   isAddTodoInputVisible: false,
-  saveTodoButtonText: 'Save'
+  saveTodoButtonText: 'Save',
+  todoDescription: '',
+  todoDescriptionWarningText: null
 });
 
 const todoReducer = (state = initialState, action) => {
@@ -30,6 +32,9 @@ const todoReducer = (state = initialState, action) => {
 
     case 'ON_CLICK_SAVE_TODO_BUTTON':
       return state.set('saveTodoButtonText', 'Saving...');
+
+    case 'ON_CHANGE_TODO_DESCRIPTION':
+      return state.set('todoDescription', action.value);
 
     case 'ON_SAVE_TODO_SUCCESS':
       return state

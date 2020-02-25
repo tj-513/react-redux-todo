@@ -44,14 +44,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onClickAddTodoButton: () => dispatch({ type: 'ON_CLICK_ADD_TODO_BUTTON' }),
-    onClickSaveButton: e => {
-      const { value } = e;
-      dispatch({
-        type: 'ON_CLICK_SAVE_TODO_BUTTON',
-        value
-      });
-    }
+    onClickAddTodoButton: () => dispatch({ type: 'ON_CLICK_ADD_TODO_BUTTON' })
   };
 };
 
