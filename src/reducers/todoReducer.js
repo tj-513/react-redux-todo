@@ -25,10 +25,9 @@ const todoReducer = (state = initialState, action) => {
       );
 
     case 'ON_CLICK_ADD_TODO_BUTTON':
-      return state.set(
-        'isAddTodoInputVisible',
-        !state.get('isAddTodoInputVisible')
-      );
+      return state
+        .set('isAddTodoInputVisible', !state.get('isAddTodoInputVisible'))
+        .set('todoDescription', '');
 
     case 'ON_CLICK_SAVE_TODO_BUTTON':
       return state.set('saveTodoButtonText', 'Saving...');
@@ -45,7 +44,8 @@ const todoReducer = (state = initialState, action) => {
             isComplete: false
           })
         )
-        .set('saveTodoButtonText', 'Save');
+        .set('saveTodoButtonText', 'Save')
+        .set('todoDescription', '');
     default:
       return state;
   }
