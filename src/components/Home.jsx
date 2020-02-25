@@ -4,10 +4,18 @@ import { connect } from 'react-redux';
 
 import Todo from './Todo';
 
-const Home = ({ todos, isAddTodoInputVisible, onClickAddTodoButton }) => (
+const Home = ({
+  todos,
+  isAddTodoInputVisible,
+  onClickSaveButton,
+  onClickAddTodoButton
+}) => (
   <div className='home-container'>
     {isAddTodoInputVisible ? (
-      <AddTodo onClickSaveButton={null} onClickCancelButton={onClickAddTodoButton} />
+      <AddTodo
+        onClickSaveButton={onClickSaveButton}
+        onClickCancelButton={onClickAddTodoButton}
+      />
     ) : (
       <button onClick={onClickAddTodoButton}>Add New Todo</button>
     )}
@@ -15,7 +23,7 @@ const Home = ({ todos, isAddTodoInputVisible, onClickAddTodoButton }) => (
     <h3> Your Todos</h3>
     {todos &&
       todos.map(todo => (
-        <Todo completed={todo.isComplete} description={todo.description} />
+        <Todo key={todo.id} completed={todo.isComplete} description={todo.description} />
       ))}
   </div>
 );
@@ -29,7 +37,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onClickAddTodoButton: () => dispatch({ type: 'ON_CLICK_ADD_TODO_BUTTON' })
+    onClickAddTodoButton: () => dispatch({ type: 'ON_CLICK_ADD_TODO_BUTTON' }),
+    onClickSaveButton: e => {
+      const { value } = e;
+      dispatch({
+        type: 'ON_CLICK_SAVE_TODO_BUTTON',
+        value
+      });
+    }
   };
 };
 
