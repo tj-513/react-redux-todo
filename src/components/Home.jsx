@@ -18,32 +18,39 @@ const Home = ({
   onChangeTodoSearchInput
 }) => (
   <div className='home-container'>
-    <div>
-      <input
-        type='search'
-        placeholder='Search for todos..'
-        onChange={onChangeTodoSearchInput}
-      />
-    </div>
-    {isAddTodoInputVisible ? (
-      <AddTodo
-        onClickSaveButton={onClickSaveButton}
-        onClickCancelButton={onClickAddTodoButton}
-        saveTodoButtonText={saveTodoButtonText}
-      />
-    ) : (
-      <button onClick={onClickAddTodoButton}>Add New Todo</button>
-    )}
-
-    <h3> Your Todos</h3>
-    {todos &&
-      todos.map(todo => (
-        <Todo
-          key={todo.id}
-          completed={todo.isComplete}
-          description={todo.description}
+    <div className="home-header">
+      <h2>Simple Todo</h2>
+      <div className='search-todo-input'>
+        <input
+          type='search'
+          placeholder='Search for todos..'
+          onChange={onChangeTodoSearchInput}
         />
-      ))}
+      </div>
+      <div className='add-todo-container'>
+        {isAddTodoInputVisible ? (
+          <AddTodo
+            onClickSaveButton={onClickSaveButton}
+            onClickCancelButton={onClickAddTodoButton}
+            saveTodoButtonText={saveTodoButtonText}
+          />
+        ) : (
+          <button onClick={onClickAddTodoButton}>Add New Todo</button>
+        )}
+      </div>
+
+      <h3> Your Todos</h3>
+    </div>
+    <div className='todos-list-container'>
+      {todos &&
+        todos.map(todo => (
+          <Todo
+            key={todo.id}
+            completed={todo.isComplete}
+            description={todo.description}
+          />
+        ))}
+    </div>
   </div>
 );
 

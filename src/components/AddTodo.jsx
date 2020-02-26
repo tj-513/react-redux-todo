@@ -25,16 +25,20 @@ const AddTodo = ({
   onClickCancelButton
 }) => {
   return (
-    <div>
-      <input
-        type='text'
-        placeholder='todo description'
-        value={todoDescription}
-        onChange={e => onChangeTodoDescription(e.currentTarget.value)}
-        onKeyDown={e =>
-          onKeyDownTodoDescriptionInput(e, onClickSaveButton, todoDescription)
-        }
-      />
+    <div className=''>
+      <div className='add-todo-input'>
+        <input
+          type='text'
+          placeholder='todo description'
+          value={todoDescription}
+          onChange={e => onChangeTodoDescription(e.currentTarget.value)}
+          onKeyDown={e =>
+            onKeyDownTodoDescriptionInput(e, onClickSaveButton, todoDescription)
+          }
+          disabled={saveTodoButtonText === 'Saving...'}
+        />
+      </div>
+
       <div>{todoDescriptionWarningText}</div>
       <div>
         <button

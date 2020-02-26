@@ -1,3 +1,48 @@
 .home-container {
-    text-align: center;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  background: antiquewhite;
+  padding: 2rem;
+  height: 100vh;
+}
+
+.add-todo-container {
+  padding-top: 0.5rem;
+  padding: 1rem;
+  width: 50%;
+  margin: auto;
+  border-radius: 0.5rem;
+  border: thin solid burlywood;
+}
+
+.search-todo-input {
+  padding: 1rem;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 0.1rem;
+  border-radius: 0.5rem;
+  border: thin solid burlywood;
+}
+
+.add-todo-input {
+  padding: 0.5rem;
+}
+
+.todo-container {
+  padding-top: 1rem;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 0.1rem;
+  border-radius: 0.5rem;
+  border: thin solid burlywood;
+}
+
+.todo-description {
+  padding: 1rem;
+}
+
+.todo-status {
+  background: burlywood;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
