@@ -1,9 +1,10 @@
 import { takeLatest, put, delay } from 'redux-saga/effects';
+import {onSaveTodoSuccessAction} from '../actions/index';
 
 function* createNewTodo(action) {
   // TODO: forward what comes from bff rather than forwarding action
   yield delay(1000);
-  yield put({ type: 'ON_SAVE_TODO_SUCCESS', value: action });
+  yield put(onSaveTodoSuccessAction(action.value));
 }
 
 export default function* watchCreateNewTodo() {

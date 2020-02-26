@@ -3,6 +3,7 @@ import AddTodo from './AddTodo';
 import { connect } from 'react-redux';
 
 import Todo from './Todo';
+import {onClickAddTodoButtonAction} from '../actions/index';
 
 const Home = ({
   todos,
@@ -44,7 +45,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onClickAddTodoButton: () => dispatch({ type: 'ON_CLICK_ADD_TODO_BUTTON' })
+    onClickAddTodoButton: () => dispatch(onClickAddTodoButtonAction())
   };
 };
 

@@ -40,7 +40,7 @@ const todoReducer = (state = initialState, action) => {
         .updateIn(['todos'], todos =>
           todos.push({
             id: uuid(),
-            description: action.value.value,
+            description: action.value,
             isComplete: false
           })
         )

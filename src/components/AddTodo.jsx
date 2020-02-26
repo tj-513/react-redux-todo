@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {
+  onChangeTodoDescriptionAction,
+  onClickSaveTodoButtonAction
+} from '../actions/index';
+
 const AddTodo = ({
   saveTodoButtonText,
   todoDescriptionWarningText,
@@ -46,13 +51,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onChangeTodoDescription: description =>
-      dispatch({type:'ON_CHANGE_TODO_DESCRIPTION', value:description}),
+      dispatch(onChangeTodoDescriptionAction(description)),
     onClickSaveButton: e => {
       const { value } = e;
-      dispatch({
-        type: 'ON_CLICK_SAVE_TODO_BUTTON',
-        value
-      });
+      dispatch(onClickSaveTodoButtonAction(value));
     }
   };
 };
