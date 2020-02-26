@@ -6,6 +6,16 @@ import {
   onClickSaveTodoButtonAction
 } from '../actions/index';
 
+const onKeyDownTodoDescriptionInput = (
+  e,
+  onClickSaveButton,
+  todoDescription
+) => {
+  if (e.keyCode === 13) {
+    onClickSaveButton({ value: todoDescription });
+  }
+};
+
 const AddTodo = ({
   saveTodoButtonText,
   todoDescriptionWarningText,
@@ -21,6 +31,9 @@ const AddTodo = ({
         placeholder='todo description'
         value={todoDescription}
         onChange={e => onChangeTodoDescription(e.currentTarget.value)}
+        onKeyDown={e =>
+          onKeyDownTodoDescriptionInput(e, onClickSaveButton, todoDescription)
+        }
       />
       <div>{todoDescriptionWarningText}</div>
       <div>
