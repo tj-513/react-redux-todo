@@ -1,6 +1,13 @@
 import { List, Map } from 'immutable';
 import { v1 as uuid } from 'uuid';
 
+import {
+  ON_CLICK_ADD_TODO_BUTTON,
+  ON_CLICK_SAVE_TODO_BUTTON,
+  ON_CHANGE_TODO_DESCRIPTION,
+  ON_SAVE_TODO_SUCCESS
+} from '../util/constants';
+
 const initialState = Map({
   todos: List([
     { id: uuid(), description: 'Create Todo', isComplete: false },
@@ -24,18 +31,18 @@ const todoReducer = (state = initialState, action) => {
         !!action.value
       );
 
-    case 'ON_CLICK_ADD_TODO_BUTTON':
+    case ON_CLICK_ADD_TODO_BUTTON:
       return state
         .set('isAddTodoInputVisible', !state.get('isAddTodoInputVisible'))
         .set('todoDescription', '');
 
-    case 'ON_CLICK_SAVE_TODO_BUTTON':
+    case ON_CLICK_SAVE_TODO_BUTTON:
       return state.set('saveTodoButtonText', 'Saving...');
 
-    case 'ON_CHANGE_TODO_DESCRIPTION':
+    case ON_CHANGE_TODO_DESCRIPTION:
       return state.set('todoDescription', action.value);
 
-    case 'ON_SAVE_TODO_SUCCESS':
+    case ON_SAVE_TODO_SUCCESS:
       return state
         .updateIn(['todos'], todos =>
           todos.push({
