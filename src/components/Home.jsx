@@ -3,16 +3,28 @@ import AddTodo from './AddTodo';
 import { connect } from 'react-redux';
 
 import Todo from './Todo';
-import {onClickAddTodoButtonAction} from '../actions/index';
+import {
+  onClickAddTodoButtonAction,
+  onChangeTodoSearchInput
+} from '../actions/index';
+import { getMatchingTodos } from '../selectors/index';
 
 const Home = ({
   todos,
   isAddTodoInputVisible,
   saveTodoButtonText,
   onClickSaveButton,
-  onClickAddTodoButton
+  onClickAddTodoButton,
+  onChangeTodoSearchInput
 }) => (
   <div className='home-container'>
+    <div>
+      <input
+        type='search'
+        placeholder='Search for todos..'
+        onChange={onChangeTodoSearchInput}
+      />
+    </div>
     {isAddTodoInputVisible ? (
       <AddTodo
         onClickSaveButton={onClickSaveButton}
@@ -37,7 +49,7 @@ const Home = ({
 
 const mapStateToProps = state => {
   return {
-    todos: state.get('todos'),
+    todos: getMatchingTodos(state),
     isAddTodoInputVisible: state.get('isAddTodoInputVisible'),
     saveTodoButtonText: state.get('saveTodoButtonText')
   };
@@ -45,7 +57,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onClickAddTodoButton: () => dispatch(onClickAddTodoButtonAction())
+    onClickAddTodoButton: () => dispatch(onClickAddTodoButtonAction()),
+    onChangeTodoSearchInput: e =>
+      dispatch(onChangeTodoSearchInput(e.currentTarget.value))
   };
 };
 

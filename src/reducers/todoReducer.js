@@ -5,7 +5,8 @@ import {
   ON_CLICK_ADD_TODO_BUTTON,
   ON_CLICK_SAVE_TODO_BUTTON,
   ON_CHANGE_TODO_DESCRIPTION,
-  ON_SAVE_TODO_SUCCESS
+  ON_SAVE_TODO_SUCCESS,
+  ON_CHANGE_TODO_SEARCH_INPUT
 } from '../util/constants';
 
 const initialState = Map({
@@ -16,7 +17,8 @@ const initialState = Map({
   isAddTodoInputVisible: false,
   saveTodoButtonText: 'Save',
   todoDescription: '',
-  todoDescriptionWarningText: null
+  todoDescriptionWarningText: null,
+  searchTerm: ''
 });
 
 const todoReducer = (state = initialState, action) => {
@@ -43,6 +45,9 @@ const todoReducer = (state = initialState, action) => {
 
     case ON_SAVE_TODO_SUCCESS:
       return onSaveTodoSuccess(state, value);
+
+    case ON_CHANGE_TODO_SEARCH_INPUT:
+      return onChangeTodoSearchInput(state, value);
 
     default:
       return state;
@@ -74,6 +79,10 @@ const onSaveTodoSuccess = (state, value) => {
     )
     .set('saveTodoButtonText', 'Save')
     .set('todoDescription', '');
+};
+
+const onChangeTodoSearchInput = (state, value) => {
+  return state.set('searchTerm', value);
 };
 
 export default todoReducer;

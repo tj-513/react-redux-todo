@@ -2,7 +2,8 @@ import {
   ON_CLICK_ADD_TODO_BUTTON,
   ON_CLICK_SAVE_TODO_BUTTON,
   ON_CHANGE_TODO_DESCRIPTION,
-  ON_SAVE_TODO_SUCCESS
+  ON_SAVE_TODO_SUCCESS,
+  ON_CHANGE_TODO_SEARCH_INPUT
 } from '../util/constants';
 
 const onClickAddTodoButtonAction = () => ({
@@ -24,9 +25,15 @@ const onSaveTodoSuccessAction = value => ({
   value
 });
 
+const onChangeTodoSearchInput = value => ({
+  type: ON_CHANGE_TODO_SEARCH_INPUT,
+  value
+});
+
 export {
   onClickAddTodoButtonAction,
   onClickSaveTodoButtonAction,
   onChangeTodoDescriptionAction,
-  onSaveTodoSuccessAction
+  onSaveTodoSuccessAction,
+  onChangeTodoSearchInput
 };
