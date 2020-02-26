@@ -19,8 +19,8 @@ const initialState = Map({
   todoDescriptionWarningText: null
 });
 
-const todoReducer = (action, state = initialState) => {
-  const {value} = action;
+const todoReducer = (state = initialState, action) => {
+  const { value } = action;
   switch (action.type) {
     case 'MARK_AS_COMPLETE':
       const completedItemIndex = state
@@ -39,7 +39,7 @@ const todoReducer = (action, state = initialState) => {
       return onClickSaveTodoButton(state);
 
     case ON_CHANGE_TODO_DESCRIPTION:
-      return  onChangeTodoDescription(state, value);
+      return onChangeTodoDescription(state, value);
 
     case ON_SAVE_TODO_SUCCESS:
       return onSaveTodoSuccess(state, value);

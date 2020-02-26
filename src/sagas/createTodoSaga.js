@@ -1,5 +1,6 @@
 import { takeLatest, put, delay } from 'redux-saga/effects';
 import {onSaveTodoSuccessAction} from '../actions/index';
+import {ON_CLICK_SAVE_TODO_BUTTON} from '../util/constants';
 
 function* createNewTodo(action) {
   // TODO: forward what comes from bff rather than forwarding action
@@ -8,5 +9,5 @@ function* createNewTodo(action) {
 }
 
 export default function* watchCreateNewTodo() {
-  yield takeLatest('ON_CLICK_SAVE_TODO_BUTTON', createNewTodo);
+  yield takeLatest(ON_CLICK_SAVE_TODO_BUTTON, createNewTodo);
 }
