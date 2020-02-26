@@ -11,6 +11,7 @@ import { getMatchingTodos } from '../selectors/index';
 
 const Home = ({
   todos,
+  matchingTodos,
   isAddTodoInputVisible,
   saveTodoButtonText,
   onClickSaveButton,
@@ -18,7 +19,7 @@ const Home = ({
   onChangeTodoSearchInput
 }) => (
   <div className='home-container'>
-    <div className="home-header">
+    <div className='home-header'>
       <h2>Simple Todo</h2>
       <div className='search-todo-input'>
         <input
@@ -42,8 +43,15 @@ const Home = ({
       <h3> Your Todos</h3>
     </div>
     <div className='todos-list-container'>
-      {todos &&
-        todos.map(todo => (
+      <div>
+        {todos.size === 0
+          ? 'No TODOs added yet..'
+          : matchingTodos.size === 0
+          ? 'No TODO matching search criteria'
+          : null}
+      </div>
+      {matchingTodos &&
+        matchingTodos.map(todo => (
           <Todo
             key={todo.id}
             completed={todo.isComplete}
@@ -56,7 +64,8 @@ const Home = ({
 
 const mapStateToProps = state => {
   return {
-    todos: getMatchingTodos(state),
+    todos: state.get('todos'),
+    matchingTodos: getMatchingTodos(state),
     isAddTodoInputVisible: state.get('isAddTodoInputVisible'),
     saveTodoButtonText: state.get('saveTodoButtonText')
   };

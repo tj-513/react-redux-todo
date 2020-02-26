@@ -10,10 +10,7 @@ import {
 } from '../util/constants';
 
 const initialState = Map({
-  todos: List([
-    { id: uuid(), description: 'Create Todo', isComplete: false },
-    { id: uuid(), description: 'View Todo', isComplete: true }
-  ]),
+  todos: List([]),
   isAddTodoInputVisible: false,
   saveTodoButtonText: 'Save',
   todoDescription: '',
