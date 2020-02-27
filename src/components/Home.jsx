@@ -7,7 +7,7 @@ import {
   onClickAddTodoButtonAction,
   onChangeTodoSearchInput,
   onClickMarkTodoAsComplete,
-  onClickDeleteTodo
+  onClickDeleteTodoAction
 } from '../actions/index';
 import { getMatchingTodos } from '../selectors/index';
 import {
@@ -95,7 +95,7 @@ const mapDispatchToProps = dispatch => {
     onChangeTodoSearchInput: e =>
       dispatch(onChangeTodoSearchInput(e.currentTarget.value)),
     onClickMarkTodoAsComplete: id => dispatch(onClickMarkTodoAsComplete(id)),
-    onClickDeleteTodo: id => dispatch(onClickDeleteTodo(id))
+    onClickDeleteTodo: id => dispatch(onClickDeleteTodoAction(id))
   };
 };
 

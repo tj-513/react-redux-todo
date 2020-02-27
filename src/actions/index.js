@@ -24,7 +24,7 @@ export const onChangeTodoDescriptionAction = description => ({
   value: description
 });
 
-export const onSaveTodoSuccessAction = value => ({
+export const onSuccessSaveTodoAction = value => ({
   type: ON_SUCCESS_SAVE_TODO,
   value
 });
@@ -44,12 +44,12 @@ export const onSuccessMarkTodoAsCompleteAction = id => ({
   value: id
 });
 
-export const onClickDeleteTodo = id => ({
+export const onClickDeleteTodoAction = id => ({
   type: ON_CLICK_DELETE_TODO,
   value: id
 });
 
-export const onSuccessDeleteTodo = id => ({
+export const onSuccessDeleteTodoAction = id => ({
   type: ON_SUCCESS_DELETE_TODO,
   value: id
 })
