@@ -5,10 +5,10 @@ import {
   ON_CLICK_ADD_TODO_BUTTON,
   ON_CLICK_SAVE_TODO_BUTTON,
   ON_CHANGE_TODO_DESCRIPTION,
-  ON_SAVE_TODO_SUCCESS,
+  ON_SUCCESS_SAVE_TODO,
   ON_CHANGE_TODO_SEARCH_INPUT,
   ON_CLICK_MARK_TODO_AS_COMPLETE,
-  ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS,
+  ON_SUCCESS_MARK_TODO_AS_COMPLETE,
   ON_CLICK_DELETE_TODO,
   ON_SUCCESS_DELETE_TODO
 } from '../util/constants';
@@ -37,14 +37,14 @@ const todoReducer = (state = initialState, action) => {
     case ON_CHANGE_TODO_DESCRIPTION:
       return onChangeTodoDescription(state, value);
 
-    case ON_SAVE_TODO_SUCCESS:
+    case ON_SUCCESS_SAVE_TODO:
       return onSaveTodoSuccess(state, value);
 
     case ON_CHANGE_TODO_SEARCH_INPUT:
       return onChangeTodoSearchInput(state, value);
 
-    case ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS:
-      return onSaveMarkTodoAsCompleteSuccess(state, value);
+    case ON_SUCCESS_MARK_TODO_AS_COMPLETE:
+      return onSuccessMarkTodoAsComplete(state, value);
 
     case ON_CLICK_DELETE_TODO:
       return onClickDeleteTodo(state, value);
@@ -96,7 +96,7 @@ const onClickMarkTodoAsComplete = (state, value) => {
   return state.setIn(['todos', completedItemIndex, 'isLoading'], true);
 };
 
-const onSaveMarkTodoAsCompleteSuccess = (state, value) => {
+const onSuccessMarkTodoAsComplete = (state, value) => {
   const completedItemIndex = state
     .get('todos')
     .findIndex(todo => todo.id === value);

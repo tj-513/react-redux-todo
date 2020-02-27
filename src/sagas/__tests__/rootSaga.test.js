@@ -5,7 +5,7 @@ import { createNewTodo } from '../rootSaga';
 describe('Test create todo saga', () => {
   const action = { value: { id: 'ab12', description: 'description' } };
   const expectedAction = {
-    type: 'ON_SAVE_TODO_SUCCESS',
+    type: 'ON_SUCCESS_SAVE_TODO',
     value: { id: 'ab12', description: 'description' }
   };
   const generator = createNewTodo(action);

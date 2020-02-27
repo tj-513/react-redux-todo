@@ -1,7 +1,7 @@
 import { takeLatest, takeEvery, put, delay, all } from 'redux-saga/effects';
 import {
   onSaveTodoSuccessAction,
-  onSaveMarkTodoAsCompleteSuccessAction,
+  onSuccessMarkTodoAsCompleteAction,
   onSuccessDeleteTodo
 } from '../actions/index';
 import {
@@ -13,7 +13,7 @@ import {
 export function* markTodoAsComplete(action) {
   // TODO: forward what comes from bff rather than forwarding action
   yield delay(1000);
-  yield put(onSaveMarkTodoAsCompleteSuccessAction(action.value));
+  yield put(onSuccessMarkTodoAsCompleteAction(action.value));
 }
 
 export function* createNewTodo(action) {
