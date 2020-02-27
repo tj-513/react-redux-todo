@@ -5,7 +5,9 @@ import {
   ON_SAVE_TODO_SUCCESS,
   ON_CHANGE_TODO_SEARCH_INPUT,
   ON_CLICK_MARK_TODO_AS_COMPLETE,
-  ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS
+  ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS,
+  ON_CLICK_DELETE_TODO,
+  ON_SUCCESS_DELETE_TODO
 } from '../util/constants';
 
 export const onClickAddTodoButtonAction = () => ({
@@ -41,3 +43,13 @@ export const onSaveMarkTodoAsCompleteSuccessAction = id => ({
   type: ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS,
   value: id
 });
+
+export const onClickDeleteTodo = id => ({
+  type: ON_CLICK_DELETE_TODO,
+  value: id
+});
+
+export const onSuccessDeleteTodo = id => ({
+  type: ON_SUCCESS_DELETE_TODO,
+  value: id
+})

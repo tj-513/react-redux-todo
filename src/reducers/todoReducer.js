@@ -9,6 +9,8 @@ import {
   ON_CHANGE_TODO_SEARCH_INPUT,
   ON_CLICK_MARK_TODO_AS_COMPLETE,
   ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS,
+  ON_CLICK_DELETE_TODO,
+  ON_SUCCESS_DELETE_TODO
 } from '../util/constants';
 
 const initialState = Map({
@@ -43,6 +45,12 @@ const todoReducer = (state = initialState, action) => {
 
     case ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS:
       return onSaveMarkTodoAsCompleteSuccess(state, value);
+
+    case ON_CLICK_DELETE_TODO:
+      return onClickDeleteTodo(state, value);
+
+    case ON_SUCCESS_DELETE_TODO:
+      return onSuccessDeleteTodo(state, value);
 
     default:
       return state;
@@ -85,18 +93,29 @@ const onClickMarkTodoAsComplete = (state, value) => {
   const completedItemIndex = state
     .get('todos')
     .findIndex(todo => todo.id === value);
-  console.log(completedItemIndex);
-  return state
-    .setIn(['todos', completedItemIndex, 'isLoading'], true);
+  return state.setIn(['todos', completedItemIndex, 'isLoading'], true);
 };
 
 const onSaveMarkTodoAsCompleteSuccess = (state, value) => {
   const completedItemIndex = state
     .get('todos')
     .findIndex(todo => todo.id === value);
-    return state
+  return state
     .setIn(['todos', completedItemIndex, 'isComplete'], true)
     .setIn(['todos', completedItemIndex, 'isLoading'], false);
+};
+
+const onClickDeleteTodo = (state, value) => {
+  const itemToDeleteIndex = state
+    .get('todos')
+    .findIndex(todo => todo.id === value);
+  return state.setIn(['todos', itemToDeleteIndex, 'isLoading'], true);
+};
+
+const onSuccessDeleteTodo = (state, value) => {
+  return state.updateIn(['todos'], todos =>
+    todos.filter(todo => todo.id !== value)
+  );
 };
 
 export default todoReducer;

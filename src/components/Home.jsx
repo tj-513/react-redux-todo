@@ -6,7 +6,8 @@ import Todo from './Todo';
 import {
   onClickAddTodoButtonAction,
   onChangeTodoSearchInput,
-  onClickMarkTodoAsComplete
+  onClickMarkTodoAsComplete,
+  onClickDeleteTodo
 } from '../actions/index';
 import { getMatchingTodos } from '../selectors/index';
 import {
@@ -17,7 +18,7 @@ import {
   TODO_SEARCH_PLACEHOLDER_TEXT,
   ADD_TODO_NEW_TODO_BUTTON_TEXT
 } from '../util/constants';
-console.log(TODO_LIST_NO_TODOS_MATCHING_TEXT);
+
 const Home = ({
   todos,
   matchingTodos,
@@ -26,7 +27,8 @@ const Home = ({
   onClickSaveButton,
   onClickAddTodoButton,
   onChangeTodoSearchInput,
-  onClickMarkTodoAsComplete
+  onClickMarkTodoAsComplete,
+  onClickDeleteTodo
 }) => (
   <div className='home-container'>
     <div className='home-header'>
@@ -70,7 +72,8 @@ const Home = ({
             isComplete={todo.isComplete}
             isLoading={todo.isLoading}
             description={todo.description}
-            onMarkAsCompleteClicked={()=>onClickMarkTodoAsComplete(todo.id)}
+            onMarkAsCompleteClicked={() => onClickMarkTodoAsComplete(todo.id)}
+            onClickDeleteTodo={() => onClickDeleteTodo(todo.id)}
           />
         ))}
     </div>
@@ -91,7 +94,8 @@ const mapDispatchToProps = dispatch => {
     onClickAddTodoButton: () => dispatch(onClickAddTodoButtonAction()),
     onChangeTodoSearchInput: e =>
       dispatch(onChangeTodoSearchInput(e.currentTarget.value)),
-      onClickMarkTodoAsComplete: id => dispatch(onClickMarkTodoAsComplete(id))
+    onClickMarkTodoAsComplete: id => dispatch(onClickMarkTodoAsComplete(id)),
+    onClickDeleteTodo: id => dispatch(onClickDeleteTodo(id))
   };
 };
 
