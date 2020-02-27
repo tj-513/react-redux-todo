@@ -4,7 +4,7 @@
   margin: auto;
   background: antiquewhite;
   padding: 2rem;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .add-todo-container {
@@ -44,5 +44,11 @@
 
 .todo-status {
   background: burlywood;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+
+.todo-status-complete {
+  background:darkseagreen;
   border-radius: 0 0 0.5rem 0.5rem;
 }

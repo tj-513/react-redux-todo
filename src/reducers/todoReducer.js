@@ -6,7 +6,9 @@ import {
   ON_CLICK_SAVE_TODO_BUTTON,
   ON_CHANGE_TODO_DESCRIPTION,
   ON_SAVE_TODO_SUCCESS,
-  ON_CHANGE_TODO_SEARCH_INPUT
+  ON_CHANGE_TODO_SEARCH_INPUT,
+  ON_CLICK_MARK_TODO_AS_COMPLETE,
+  ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS,
 } from '../util/constants';
 
 const initialState = Map({
@@ -21,15 +23,8 @@ const initialState = Map({
 const todoReducer = (state = initialState, action) => {
   const { value } = action;
   switch (action.type) {
-    case 'MARK_AS_COMPLETE':
-      const completedItemIndex = state
-        .get('todos')
-        .findIndex(todo => todo.id === action.value);
-
-      return state.setIn(
-        ['todos', completedItemIndex, 'isComplete'],
-        !!action.value
-      );
+    case ON_CLICK_MARK_TODO_AS_COMPLETE:
+      return onClickMarkTodoAsComplete(state, value);
 
     case ON_CLICK_ADD_TODO_BUTTON:
       return onClickAddTodoButton(state);
@@ -45,6 +40,9 @@ const todoReducer = (state = initialState, action) => {
 
     case ON_CHANGE_TODO_SEARCH_INPUT:
       return onChangeTodoSearchInput(state, value);
+
+    case ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS:
+      return onSaveMarkTodoAsCompleteSuccess(state, value);
 
     default:
       return state;
@@ -71,7 +69,8 @@ const onSaveTodoSuccess = (state, value) => {
       todos.push({
         id: uuid(),
         description: value,
-        isComplete: false
+        isComplete: false,
+        isLoading: false
       })
     )
     .set('saveTodoButtonText', 'Save')
@@ -80,6 +79,24 @@ const onSaveTodoSuccess = (state, value) => {
 
 const onChangeTodoSearchInput = (state, value) => {
   return state.set('searchTerm', value);
+};
+
+const onClickMarkTodoAsComplete = (state, value) => {
+  const completedItemIndex = state
+    .get('todos')
+    .findIndex(todo => todo.id === value);
+  console.log(completedItemIndex);
+  return state
+    .setIn(['todos', completedItemIndex, 'isLoading'], true);
+};
+
+const onSaveMarkTodoAsCompleteSuccess = (state, value) => {
+  const completedItemIndex = state
+    .get('todos')
+    .findIndex(todo => todo.id === value);
+    return state
+    .setIn(['todos', completedItemIndex, 'isComplete'], true)
+    .setIn(['todos', completedItemIndex, 'isLoading'], false);
 };
 
 export default todoReducer;

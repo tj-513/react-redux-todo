@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import Todo from './Todo';
 import {
   onClickAddTodoButtonAction,
-  onChangeTodoSearchInput
+  onChangeTodoSearchInput,
+  onClickMarkTodoAsComplete
 } from '../actions/index';
 import { getMatchingTodos } from '../selectors/index';
 import {
@@ -24,7 +25,8 @@ const Home = ({
   saveTodoButtonText,
   onClickSaveButton,
   onClickAddTodoButton,
-  onChangeTodoSearchInput
+  onChangeTodoSearchInput,
+  onClickMarkTodoAsComplete
 }) => (
   <div className='home-container'>
     <div className='home-header'>
@@ -64,8 +66,11 @@ const Home = ({
         matchingTodos.map(todo => (
           <Todo
             key={todo.id}
-            completed={todo.isComplete}
+            id={todo.id}
+            isComplete={todo.isComplete}
+            isLoading={todo.isLoading}
             description={todo.description}
+            onMarkAsCompleteClicked={()=>onClickMarkTodoAsComplete(todo.id)}
           />
         ))}
     </div>
@@ -85,7 +90,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onClickAddTodoButton: () => dispatch(onClickAddTodoButtonAction()),
     onChangeTodoSearchInput: e =>
-      dispatch(onChangeTodoSearchInput(e.currentTarget.value))
+      dispatch(onChangeTodoSearchInput(e.currentTarget.value)),
+      onClickMarkTodoAsComplete: id => dispatch(onClickMarkTodoAsComplete(id))
   };
 };
 

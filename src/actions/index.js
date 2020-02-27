@@ -3,37 +3,41 @@ import {
   ON_CLICK_SAVE_TODO_BUTTON,
   ON_CHANGE_TODO_DESCRIPTION,
   ON_SAVE_TODO_SUCCESS,
-  ON_CHANGE_TODO_SEARCH_INPUT
+  ON_CHANGE_TODO_SEARCH_INPUT,
+  ON_CLICK_MARK_TODO_AS_COMPLETE,
+  ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS
 } from '../util/constants';
 
-const onClickAddTodoButtonAction = () => ({
+export const onClickAddTodoButtonAction = () => ({
   type: ON_CLICK_ADD_TODO_BUTTON
 });
 
-const onClickSaveTodoButtonAction = value => ({
+export const onClickSaveTodoButtonAction = value => ({
   type: ON_CLICK_SAVE_TODO_BUTTON,
   value
 });
 
-const onChangeTodoDescriptionAction = description => ({
+export const onChangeTodoDescriptionAction = description => ({
   type: ON_CHANGE_TODO_DESCRIPTION,
   value: description
 });
 
-const onSaveTodoSuccessAction = value => ({
+export const onSaveTodoSuccessAction = value => ({
   type: ON_SAVE_TODO_SUCCESS,
   value
 });
 
-const onChangeTodoSearchInput = value => ({
+export const onChangeTodoSearchInput = value => ({
   type: ON_CHANGE_TODO_SEARCH_INPUT,
   value
 });
 
-export {
-  onClickAddTodoButtonAction,
-  onClickSaveTodoButtonAction,
-  onChangeTodoDescriptionAction,
-  onSaveTodoSuccessAction,
-  onChangeTodoSearchInput
-};
+export const onClickMarkTodoAsComplete = id => ({
+  type: ON_CLICK_MARK_TODO_AS_COMPLETE,
+  value: id
+});
+
+export const onSaveMarkTodoAsCompleteSuccessAction = id => ({
+  type: ON_SAVE_MARK_TODO_AS_COMPLETE_SUCCESS,
+  value: id
+});
