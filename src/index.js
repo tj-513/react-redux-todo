@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import todoReducer from './reducers/todoReducer';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from "redux-saga";
-import createTodoSaga from './sagas/createTodoSaga';
+import createTodoSaga from './sagas/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(todoReducer, applyMiddleware(sagaMiddleware));
