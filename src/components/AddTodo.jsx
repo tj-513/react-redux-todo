@@ -2,6 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
+  ADD_TODO_SAVING_BUTTON_TEXT,
+  ADD_TODO_CANCEL_BUTTON_TEXT
+} from '../util/constants';
+
+import {
   onChangeTodoDescriptionAction,
   onClickSaveTodoButtonAction
 } from '../actions/index';
@@ -35,7 +40,7 @@ const AddTodo = ({
           onKeyDown={e =>
             onKeyDownTodoDescriptionInput(e, onClickSaveButton, todoDescription)
           }
-          disabled={saveTodoButtonText === 'Saving...'}
+          disabled={saveTodoButtonText === ADD_TODO_SAVING_BUTTON_TEXT}
         />
       </div>
 
@@ -43,7 +48,8 @@ const AddTodo = ({
       <div>
         <button
           disabled={
-            todoDescription.length === 0 || saveTodoButtonText === 'Saving...'
+            todoDescription.length === 0 ||
+            saveTodoButtonText === ADD_TODO_SAVING_BUTTON_TEXT
           }
           onClick={() => {
             onClickSaveButton({ value: todoDescription });
@@ -51,7 +57,9 @@ const AddTodo = ({
         >
           {saveTodoButtonText}
         </button>
-        <button onClick={onClickCancelButton}>Cancel</button>
+        <button onClick={onClickCancelButton}>
+          {ADD_TODO_CANCEL_BUTTON_TEXT}
+        </button>
       </div>
     </div>
   );

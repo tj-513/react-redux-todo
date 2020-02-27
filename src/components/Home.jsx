@@ -8,7 +8,15 @@ import {
   onChangeTodoSearchInput
 } from '../actions/index';
 import { getMatchingTodos } from '../selectors/index';
-
+import {
+  APP_TITLE,
+  TODO_LIST_NO_TODOS_ADDED_TEXT,
+  TODO_LIST_NO_TODOS_MATCHING_TEXT,
+  TODO_LIST_TITLE_TEXT,
+  TODO_SEARCH_PLACEHOLDER_TEXT,
+  ADD_TODO_NEW_TODO_BUTTON_TEXT
+} from '../util/constants';
+console.log(TODO_LIST_NO_TODOS_MATCHING_TEXT);
 const Home = ({
   todos,
   matchingTodos,
@@ -20,11 +28,11 @@ const Home = ({
 }) => (
   <div className='home-container'>
     <div className='home-header'>
-      <h2>Simple Todo</h2>
+      <h2>{APP_TITLE}</h2>
       <div className='search-todo-input'>
         <input
           type='search'
-          placeholder='Search for todos..'
+          placeholder={TODO_SEARCH_PLACEHOLDER_TEXT}
           onChange={onChangeTodoSearchInput}
         />
       </div>
@@ -36,18 +44,20 @@ const Home = ({
             saveTodoButtonText={saveTodoButtonText}
           />
         ) : (
-          <button onClick={onClickAddTodoButton}>Add New Todo</button>
+          <button onClick={onClickAddTodoButton}>
+            {ADD_TODO_NEW_TODO_BUTTON_TEXT}
+          </button>
         )}
       </div>
 
-      <h3> Your Todos</h3>
+      <h3>{TODO_LIST_TITLE_TEXT}</h3>
     </div>
     <div className='todos-list-container'>
       <div>
         {todos.size === 0
-          ? 'No TODOs added yet..'
+          ? TODO_LIST_NO_TODOS_ADDED_TEXT
           : matchingTodos.size === 0
-          ? 'No TODO matching search criteria'
+          ? TODO_LIST_NO_TODOS_MATCHING_TEXT
           : null}
       </div>
       {matchingTodos &&
