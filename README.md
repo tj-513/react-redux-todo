@@ -16,3 +16,6 @@ Run the following commands to get the todo app running
 <br>
 `yarn start`
 
+## This app currently supports,
+ - Adding a TODO
+ - Marking a TODO as complete
