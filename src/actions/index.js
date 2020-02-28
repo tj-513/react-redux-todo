@@ -7,7 +7,8 @@ import {
   ON_CLICK_MARK_TODO_AS_COMPLETE,
   ON_SUCCESS_MARK_TODO_AS_COMPLETE,
   ON_CLICK_DELETE_TODO,
-  ON_SUCCESS_DELETE_TODO
+  ON_SUCCESS_DELETE_TODO,
+  ON_SET_IS_ADD_TODO_LOADING
 } from '../util/constants';
 
 export const onClickAddTodoButtonAction = () => ({
@@ -52,4 +53,9 @@ export const onClickDeleteTodoAction = id => ({
 export const onSuccessDeleteTodoAction = id => ({
   type: ON_SUCCESS_DELETE_TODO,
   value: id
-})
+});
+
+export const onSetIsAddTodoLoadingAction = isLoading => ({
+  type: ON_SET_IS_ADD_TODO_LOADING,
+  value: isLoading
+});

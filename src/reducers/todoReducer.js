@@ -10,13 +10,15 @@ import {
   ON_CLICK_MARK_TODO_AS_COMPLETE,
   ON_SUCCESS_MARK_TODO_AS_COMPLETE,
   ON_CLICK_DELETE_TODO,
-  ON_SUCCESS_DELETE_TODO
+  ON_SUCCESS_DELETE_TODO,
+  ON_SET_IS_ADD_TODO_LOADING
 } from '../util/constants';
 
 const initialState = Map({
   todos: List([]),
   isAddTodoInputVisible: false,
   saveTodoButtonText: 'Save',
+  isAddTodoLoading: false,
   todoDescription: '',
   todoDescriptionWarningText: null,
   searchTerm: ''
@@ -52,6 +54,8 @@ const todoReducer = (state = initialState, action) => {
     case ON_SUCCESS_DELETE_TODO:
       return onSuccessDeleteTodo(state, value);
 
+    case ON_SET_IS_ADD_TODO_LOADING:
+      return onSetIsAddTodoLoading(state, value);
     default:
       return state;
   }
@@ -81,7 +85,6 @@ const onSaveTodoSuccess = (state, value) => {
         isLoading: false
       })
     )
-    .set('saveTodoButtonText', 'Save')
     .set('todoDescription', '');
 };
 
@@ -118,4 +121,7 @@ const onSuccessDeleteTodo = (state, value) => {
   );
 };
 
+const onSetIsAddTodoLoading = (state, value) => {
+  return state.set('isAddTodoLoading', value);
+};
 export default todoReducer;

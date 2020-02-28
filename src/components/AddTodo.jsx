@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import {
   ADD_TODO_SAVING_BUTTON_TEXT,
-  ADD_TODO_CANCEL_BUTTON_TEXT
+  ADD_TODO_CANCEL_BUTTON_TEXT,
+  ADD_TODO_SAVE_BUTTON_TEXT
 } from '../util/constants';
 
 import {
@@ -22,7 +23,7 @@ const onKeyDownTodoDescriptionInput = (
 };
 
 const AddTodo = ({
-  saveTodoButtonText,
+  isAddTodoLoading,
   todoDescriptionWarningText,
   todoDescription,
   onChangeTodoDescription,
@@ -40,22 +41,21 @@ const AddTodo = ({
           onKeyDown={e =>
             onKeyDownTodoDescriptionInput(e, onClickSaveButton, todoDescription)
           }
-          disabled={saveTodoButtonText === ADD_TODO_SAVING_BUTTON_TEXT}
+          disabled={isAddTodoLoading}
         />
       </div>
 
       <div>{todoDescriptionWarningText}</div>
       <div>
         <button
-          disabled={
-            todoDescription.length === 0 ||
-            saveTodoButtonText === ADD_TODO_SAVING_BUTTON_TEXT
-          }
+          disabled={todoDescription.length === 0 || isAddTodoLoading}
           onClick={() => {
             onClickSaveButton({ value: todoDescription });
           }}
         >
-          {saveTodoButtonText}
+          {isAddTodoLoading
+            ? ADD_TODO_SAVING_BUTTON_TEXT
+            : ADD_TODO_SAVE_BUTTON_TEXT}
         </button>
         <button onClick={onClickCancelButton}>
           {ADD_TODO_CANCEL_BUTTON_TEXT}
@@ -68,6 +68,7 @@ const AddTodo = ({
 const mapStateToProps = state => {
   return {
     saveTodoButtonText: state.get('saveTodoButtonText'),
+    isAddTodoLoading: state.get('isAddTodoLoading'),
     todoDescriptionWarningText: state.get('todoDescriptionWarningText'),
     todoDescription: state.get('todoDescription')
   };
