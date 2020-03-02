@@ -19,3 +19,4 @@ Run the following commands to get the todo app running
 ## This app currently supports,
  - Adding a TODO
  - Marking a TODO as complete
+ - Deleting a TODO
